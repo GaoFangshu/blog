@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Giving your Blog a Home Page | Gao Fangshu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Utterly exhausted but deeply satisfied, I finished my work today. My blog has a home page from now on.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Giving your Blog a Home Page">
+<meta property="og:url" content="http://gaofanshu.com/blog/2017/02/14/Giving-your-Blog-a-Home-Page/index.html">
+<meta property="og:site_name" content="Gao Fangshu">
+<meta property="og:description" content="Utterly exhausted but deeply satisfied, I finished my work today. My blog has a home page from now on.">
+<meta property="og:updated_time" content="2017-02-14T14:51:32.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Giving your Blog a Home Page">
+<meta name="twitter:description" content="Utterly exhausted but deeply satisfied, I finished my work today. My blog has a home page from now on.">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Gao Fangshu</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">It is our choices that show what we truly are.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-home-icon" class="nav-icon" href="/blog/"></a>
+        
+          <a id="nav-tags-icon" class="nav-icon" href="/blog/tags"></a>
+        
+          <a id="nav-archives-icon" class="nav-icon" href="/blog/archives"></a>
+        
+          <a id="nav-about-icon" class="nav-icon" href="/blog/about"></a>
+        
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Giving-your-Blog-a-Home-Page" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Giving your Blog a Home Page
+    </h1>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2017-02-14T13:07:22.000Z" itemprop="datePublished">02-14-2017</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Utterly exhausted but deeply satisfied, I finished my work <a href="https://en.wikipedia.org/wiki/Valentine&#39;s_Day#China" target="_blank" rel="external">today</a>. My blog has a home page from now on.</p>
+<a id="more"></a>
+<p>I learned tutorials about HTML and CSS on <a href="http://www.w3schools.com/" target="_blank" rel="external">w3schools</a>. Of course, they are just introductions and there exist more <strong>specific</strong> difficulties, such as iconfont, external font and some git problems.</p>
+<p>For iconfont and external font, I found two solutions: <code>@font-face</code> in CSS and <a href="http://fontawesome.io/" target="_blank" rel="external">Font Awesome API</a>. It seems that <code>@font-face</code> can’t use absolute link (<em><a href="http://stackoverflow.com/questions/2892691/font-face-fonts-only-work-on-their-own-domain" target="_blank" rel="external">@font-face fonts only work on their own domain
+</a></em>). I tried following code, but didn’t work:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">    font-family: &quot;FontAwesome&quot;;</div><div class="line">	src: url(&quot;gaofangshu.github.io/css/fonts/fontawesome-webfont.eot&quot;);</div><div class="line">	src: url(&quot;gaofangshu.github.io/css/fonts/fontawesome-webfont.eot?#iefix&quot;) format(&apos;embedded-opentype&apos;)</div><div class="line">	     url(&quot;gaofangshu.github.io/css/fonts/fontawesome-webfont.woff&quot;) format(&quot;woff&quot;),</div><div class="line">	     url(&quot;gaofangshu.github.io/css/fonts/fontawesome-webfont.ttf&quot;) format(&quot;truetype&quot;),</div><div class="line">	     url(&quot;gaofangshu.github.io/css/fonts/fontawesome-webfont.svg&quot;) format(&quot;svg&quot;);*/</div><div class="line">    font-weight: normal;</div><div class="line">    font-style: normal;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Thus, I had to use Font Awesome API, and <code>@font-face</code> worked this time:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://use.fontawesome.com/YourEmbedCode.js&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">    @font-face &#123;</div><div class="line">        font-family: &quot;FontAwesome&quot;;</div><div class="line">        src: url(&quot;css/fonts/fontawesome-webfont.eot&quot;);</div><div class="line">        src: url(&quot;css/fonts/fontawesome-webfont.eot?#iefix&quot;) format(&apos;embedded-opentype&apos;)</div><div class="line">             url(&quot;css/fonts/fontawesome-webfont.woff&quot;) format(&quot;woff&quot;),</div><div class="line">             url(&quot;css/fonts/fontawesome-webfont.ttf&quot;) format(&quot;truetype&quot;),</div><div class="line">             url(&quot;css/fonts/fontawesome-webfont.svg&quot;) format(&quot;svg&quot;);</div><div class="line">        font-weight: normal;</div><div class="line">        font-style: normal;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>Other references, including:</p>
+<ul>
+<li><a href="https://google.github.io/material-design-icons/#icon-font-for-the-web" target="_blank" rel="external">Icon Font for the Web</a></li>
+<li><a href="https://www.zhihu.com/question/22022905" target="_blank" rel="external">css content 如何自定义生成图标？</a></li>
+<li><a href="https://github.com/FortAwesome/Font-Awesome/blob/abb4a83c4386d0f552209a3b6fa18e46b93404da/src/assets/less/bootstrap-3.3.5/list-group.less" target="_blank" rel="external">Font-Awesome Code</a></li>
+</ul>
+<p>Then, the problem was organizing HTML layout.</p>
+<ul>
+<li>Button &amp; link in HTML:<ul>
+<li><a href="http://stackoverflow.com/questions/710089/how-do-i-make-an-html-link-look-like-a-button" target="_blank" rel="external">How do I make an html link look like a button?</a></li>
+<li><a href="http://stackoverflow.com/questions/8357058/how-to-make-a-href-link-look-like-a-button" target="_blank" rel="external">How to make <code>&lt;a href=“”&gt;</code> link look like a button?
+</a></li>
+</ul>
+</li>
+<li>Centering:<ul>
+<li><a href="http://stackoverflow.com/questions/5282758/centering-page-content-vertically" target="_blank" rel="external">Centering page content vertically</a></li>
+<li><a href="http://tutorialzine.com/2010/03/centering-div-vertically-and-horizontally/" target="_blank" rel="external">Centering a Div Both Horizontally And Vertically</a></li>
+</ul>
+</li>
+</ul>
+<p>When deleting old files in the blog repository, I found a trick from <em><a href="http://stackoverflow.com/questions/28306508/git-remove-all-files-except-some-files" target="_blank" rel="external">git remove all files except some files
+</a></em>. In brief, it includes <em>cloning blog repository</em> → <em>modifing local repository</em> → <em>committing all changes</em> → <em>pushing changes to repository</em> → <em>removing all files in local repository</em> → <em>getting back the file you want to keep</em> → <em>committing again</em> → <em>pushing again</em>.</p>
+<p>Of course, the last step was pushing the code to <a href="https://github.com/GaoFangshu" target="_blank" rel="external">GitHub</a> :)</p>
+<ul>
+<li><a href="https://jacklightchen.github.io/blog/2016/10/27/HexoOverview/" target="_blank" rel="external">HexoOverview</a></li>
+<li><a href="https://www.zhihu.com/question/38125993" target="_blank" rel="external">如何在 GitHub Pages 上传自己写的网页作为首页，Hexo 博客作为其子页？</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://gaofanshu.com/blog/blog/2017/02/14/Giving-your-Blog-a-Home-Page/" data-id="ciz5nd91g00050gvg56dcrr4m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Blog/">Blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2017/02/01/IMDb-Searching-Engine/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">IMDb Searching Engine</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Powered by <a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a> & Design based on theme <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank" title="athena">athena</a><br>
+      &copy; 2016-2017 Gao Fangshu
+      <br>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
