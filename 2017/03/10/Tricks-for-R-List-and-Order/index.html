@@ -5,22 +5,16 @@
   
   <title>Tricks for R: List and Order | Gao Fangshu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.
-
-The first problem is that how can I reach the exact element in all members of a list. For example">
+  <meta name="description" content="I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tricks for R: List and Order">
 <meta property="og:url" content="http://gaofangshu.com/blog/2017/03/10/Tricks-for-R-List-and-Order/index.html">
 <meta property="og:site_name" content="Gao Fangshu">
-<meta property="og:description" content="I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.
-
-The first problem is that how can I reach the exact element in all members of a list. For example">
-<meta property="og:updated_time" content="2017-03-10T02:16:41.414Z">
+<meta property="og:description" content="I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.">
+<meta property="og:updated_time" content="2017-03-10T02:20:22.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tricks for R: List and Order">
-<meta name="twitter:description" content="I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.
-
-The first problem is that how can I reach the exact element in all members of a list. For example">
+<meta name="twitter:description" content="I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.">
   
   
     <link rel="icon" href="favicon.ico">
@@ -82,6 +76,7 @@ The first problem is that how can I reach the exact element in all members of a 
       
         <p>I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.</p>
 <hr>
+<a id="more"></a>
 <p>The first problem is that how can I reach the exact element in all members of a list. For example, I have a list <code>List</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; List &lt;- list(c(1, 2), c(3, 4), c(5, 6))</div><div class="line">&gt; List</div><div class="line">[[1]]</div><div class="line">[1] 1 2</div><div class="line">[[2]]</div><div class="line">[1] 3 4</div><div class="line">[[3]]</div><div class="line">[1] 5 6</div></pre></td></tr></table></figure></p>
 <p>I want to get the first number in each member of <code>List</code>, like <code>1 3 5</code>. And there is a solution:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; unlist(lapply(List, function(x) x[1]))</div><div class="line">[1] 1 3 5</div></pre></td></tr></table></figure></p>
 <p>If you want to get every second element, just change <code>x[1]</code> to <code>x[2]</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; unlist(lapply(List, function(x) x[2]))</div><div class="line">[1] 2 4 6</div></pre></td></tr></table></figure></p>
@@ -90,7 +85,7 @@ The first problem is that how can I reach the exact element in all members of a 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2017/03/10/Tricks-for-R-List-and-Order/" data-id="cj036zdn2000ec8vggcix3fwm" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2017/03/10/Tricks-for-R-List-and-Order/" data-id="cj0373lyl000gyovgfpvaqd26" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/R/">R</a></li></ul>
