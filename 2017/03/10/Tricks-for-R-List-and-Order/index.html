@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Tricks for R: List and Order | Gao Fangshu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.
+
+The first problem is that how can I reach the exact element in all members of a list. For example">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tricks for R: List and Order">
+<meta property="og:url" content="http://gaofangshu.com/blog/2017/03/10/Tricks-for-R-List-and-Order/index.html">
+<meta property="og:site_name" content="Gao Fangshu">
+<meta property="og:description" content="I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.
+
+The first problem is that how can I reach the exact element in all members of a list. For example">
+<meta property="og:updated_time" content="2017-03-10T02:16:41.414Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tricks for R: List and Order">
+<meta name="twitter:description" content="I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.
+
+The first problem is that how can I reach the exact element in all members of a list. For example">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Gao Fangshu</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">It is our choices that show what we truly are.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-home-icon" class="nav-icon" href="/blog/"></a>
+        
+          <a id="nav-tags-icon" class="nav-icon" href="/blog/tags"></a>
+        
+          <a id="nav-archives-icon" class="nav-icon" href="/blog/archives"></a>
+        
+          <a id="nav-about-icon" class="nav-icon" href="/blog/about"></a>
+        
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Tricks-for-R-List-and-Order" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tricks for R: List and Order
+    </h1>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2017-03-10T01:15:14.000Z" itemprop="datePublished">03-10-2017</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’m busy with my senior thesis these days. When using R to clean data for thesis, I find some tricks.</p>
+<hr>
+<p>The first problem is that how can I reach the exact element in all members of a list. For example, I have a list <code>List</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; List &lt;- list(c(1, 2), c(3, 4), c(5, 6))</div><div class="line">&gt; List</div><div class="line">[[1]]</div><div class="line">[1] 1 2</div><div class="line">[[2]]</div><div class="line">[1] 3 4</div><div class="line">[[3]]</div><div class="line">[1] 5 6</div></pre></td></tr></table></figure></p>
+<p>I want to get the first number in each member of <code>List</code>, like <code>1 3 5</code>. And there is a solution:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; unlist(lapply(List, function(x) x[1]))</div><div class="line">[1] 1 3 5</div></pre></td></tr></table></figure></p>
+<p>If you want to get every second element, just change <code>x[1]</code> to <code>x[2]</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; unlist(lapply(List, function(x) x[2]))</div><div class="line">[1] 2 4 6</div></pre></td></tr></table></figure></p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://gaofangshu.com/blog/blog/2017/03/10/Tricks-for-R-List-and-Order/" data-id="cj036zdn2000ec8vggcix3fwm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/R/">R</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2017/02/14/Modify-my-Blog-3-Giving-the-Blog-a-Home-Page/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Modify my Blog (3): Giving the Blog a Home Page</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Powered by <a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a> & Design based on theme <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank" title="athena">athena</a><br>
+      &copy; 2016-2017 Gao Fangshu
+      <br>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
