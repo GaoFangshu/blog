@@ -123,7 +123,7 @@ body,
   height: 100%;
 }
 body {
-  background: #f9f9f9;
+  background: #fff;
   font: 14px "Ubuntu", "Microsoft YaHei", Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
@@ -174,7 +174,7 @@ body {
   -ms-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
   z-index: 1;
-  background: #f9f9f9;
+  background: #fff;
 }
 .mobile-nav-on #wrap {
   left: 280px;
@@ -189,13 +189,10 @@ body {
   margin-bottom: 1em;
   margin-left: 5px;
   line-height: 1em;
-  text-shadow: 0 1px #fff;
   font-weight: bold;
 }
 .article-inner {
-  backgroun: #f9f9f9;
-  -webkit-box-shadow: 1px 2px 3px #ddd;
-  box-shadow: 1px 2px 3px #ddd;
+  backgroun: #fff;
   border: 1px solid #ddd;
   border-radius: 3px;
 }
@@ -310,7 +307,7 @@ body {
   letter-spacing: 2px;
 }
 #logo:hover {
-  color: #258fb8;
+  color: #000;
 }
 #subtitle {
   font-size: 16px;
@@ -397,11 +394,11 @@ body {
 }
 .article-inner {
   overflow: hidden;
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 .article-page-inner {
   overflow: hidden;
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 .article-meta:before,
 .article-meta:after {
@@ -418,7 +415,6 @@ body {
   float: left;
   line-height: 1em;
   color: #ccc;
-  text-shadow: 0 1px #fff;
   margin-left: 8px;
 }
 .article-category:before {
@@ -433,8 +429,7 @@ body {
 .article-title {
   text-decoration: none;
   font-size: 2em;
-  font-weight: bold;
-  color: #555;
+  color: #000;
   line-height: 1.1em;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
@@ -442,10 +437,10 @@ body {
   transition: color 0.2s;
 }
 a.article-title:hover {
-  color: #258fb8;
+  color: #000;
 }
 .article-entry {
-  color: #555;
+  color: #000;
   padding: 0 10px;
 }
 .article-entry:before,
@@ -467,19 +462,11 @@ a.article-title:hover {
 .article-entry h4,
 .article-entry h5,
 .article-entry h6 {
-  font-weight: bold;
-}
-.article-entry h1,
-.article-entry h2,
-.article-entry h3,
-.article-entry h4,
-.article-entry h5,
-.article-entry h6 {
   line-height: 1.1em;
   margin: 1.1em 0;
 }
 .article-entry a {
-  color: #258fb8;
+  color: #2a7ae2;
   text-decoration: none;
 }
 .article-entry a:hover {
@@ -497,8 +484,6 @@ a.article-title:hover {
   height: auto;
   display: block;
   margin: 2em auto;
-  -webkit-box-shadow: 2px 2px 4px #bbb;
-  box-shadow: 2px 2px 4px #bbb;
   border: 1px solid #ddd;
   border-radius: 3px;
 }
@@ -582,7 +567,7 @@ a.article-title:hover {
   display: inline-block;
   line-height: 1em;
   border-radius: 15px;
-  background: #f9f9f9;
+  background: #fff;
   color: #999;
   text-decoration: none;
 }
@@ -610,7 +595,7 @@ a.article-title:hover {
   text-decoration: none;
 }
 .article-footer a:hover {
-  color: #555;
+  color: #000;
 }
 .article-tag-list-item {
   float: left;
@@ -663,8 +648,6 @@ a.article-title:hover {
     content: "";
     border-radius: 50%;
     background: #ddd;
-    -webkit-box-shadow: 0 1px 2px #fff;
-    box-shadow: 0 1px 2px #fff;
   }
 }
 .article-nav-link-wrap {
@@ -679,7 +662,7 @@ a.article-title:hover {
   display: block;
 }
 .article-nav-link-wrap:hover {
-  color: #555;
+  color: #000;
 }
 @media screen and (min-width: 768px) {
   .article-nav-link-wrap {
@@ -738,7 +721,7 @@ a.article-title:hover {
   box-sizing: border-box;
   font: 14px "Ubuntu", "Microsoft YaHei", Arial, sans-serif;
   padding: 0 15px;
-  color: #555;
+  color: #000;
   outline: none;
   border: 1px solid #ddd;
   border-radius: 3px 3px 0 0;
@@ -746,7 +729,7 @@ a.article-title:hover {
   line-height: 36px;
 }
 .article-share-links {
-  background: #f9f9f9;
+  background: #fff;
 }
 .article-share-links:before,
 .article-share-links:after {
@@ -852,7 +835,7 @@ a.article-title:hover {
   margin: 20px 0;
 }
 #comments a {
-  color: #258fb8;
+  color: #2a7ae2;
 }
 .archives-wrap {
   margin: 60px 0;
@@ -868,20 +851,25 @@ a.article-title:hover {
 .archive-year-wrap {
   margin-bottom: 1em;
 }
+.archive-year-wrap :hover {
+  color: #000;
+}
+.archive-year {
+  margin-left: 0px;
+  font-size: 1.2em;
+}
 .archives,
 .archive-article-title {
   text-decoration: none;
-  font-weight: bold;
-  color: #258fb8;
+  color: #2a7ae2;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -ms-transition: color 0.2s;
   transition: color 0.2s;
   line-height: 2em;
 }
-.archives:hover,
 .archive-article-title:hover {
-  color: #55bfe8;
+  text-decoration: underline;
 }
 .archive-article-footer {
   margin-top: 1em;
@@ -896,9 +884,7 @@ a.article-title:hover {
 }
 #page-nav {
   margin: 60px auto;
-  background: #f9f9f9;
-  -webkit-box-shadow: 1px 2px 3px #ddd;
-  box-shadow: 1px 2px 3px #ddd;
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 3px;
   text-align: center;
@@ -923,7 +909,7 @@ a.article-title:hover {
 }
 #page-nav a:hover {
   background: #999;
-  color: #fff;
+  color: #000;
 }
 #page-nav .prev {
   float: left;
@@ -940,20 +926,20 @@ a.article-title:hover {
   }
 }
 #page-nav .current {
-  color: #555;
+  color: #000;
   font-weight: bold;
 }
 #page-nav .space {
   color: #ddd;
 }
 #footer {
-  background: #f9f9f9;
+  background: #fff;
   padding: 20px 0;
   border-top: 1px solid #ddd;
   color: #999;
 }
 #footer a {
-  color: #258fb8;
+  color: #2a7ae2;
   text-decoration: none;
 }
 #footer a:hover {
@@ -965,15 +951,12 @@ a.article-title:hover {
 }
 .article-entry pre,
 .article-entry .highlight {
-  background: #e5e5e5;
+  background: #f5f5f5;
   margin: 0 -10px;
   padding: 15px 10px;
-  border-style: solid;
-  border-color: #ddd;
-  border-width: 1px 0;
   overflow: auto;
   color: #4d4d4c;
-  line-height: 28px;
+  line-height: 22.400000000000002px;
   border-radius: 5px;
   margin-left: 10px;
   margin-right: 10px;
@@ -988,7 +971,7 @@ a.article-title:hover {
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
 }
 .article-entry code {
-  background: #e5e5e5;
+  background: #f5f5f5;
   text-shadow: none;
   padding: 0 0.3em;
   border-radius: 4px;
@@ -1042,7 +1025,7 @@ a.article-title:hover {
   border-style: solid;
   border-color: #ddd;
   border-width: 1px 0;
-  background: #e5e5e5;
+  background: #f5f5f5;
   padding: 15px 10px 15px 0;
 }
 .article-entry .gist .gist-file {
@@ -1068,7 +1051,7 @@ a.article-title:hover {
   border: none;
 }
 .article-entry .gist .gist-file .gist-meta {
-  background: #e5e5e5;
+  background: #f5f5f5;
   color: #8e908c;
   font: 0.85em "Ubuntu", "Microsoft YaHei", Arial, sans-serif;
   text-shadow: 0 0;
@@ -1077,7 +1060,7 @@ a.article-title:hover {
   margin-left: 10px;
 }
 .article-entry .gist .gist-file .gist-meta a {
-  color: #258fb8;
+  color: #2a7ae2;
   font-weight: normal;
 }
 .article-entry .gist .gist-file .gist-meta a:hover {
