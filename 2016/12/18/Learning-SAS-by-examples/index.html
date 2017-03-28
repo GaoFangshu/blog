@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://gaofangshu.com/blog/2016/12/18/Learning-SAS-by-examples/index.html">
 <meta property="og:site_name" content="Gao Fangshu">
 <meta property="og:description" content="When learning SAS programming, only reading basic SAS introductions can be a comfortable way but not efficient one. Struggling with these questions given by my professor takes much time, but it’s wort">
-<meta property="og:updated_time" content="2017-03-28T09:39:46.655Z">
+<meta property="og:updated_time" content="2017-03-28T10:19:37.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Learning SAS by Examples">
 <meta name="twitter:description" content="When learning SAS programming, only reading basic SAS introductions can be a comfortable way but not efficient one. Struggling with these questions given by my professor takes much time, but it’s wort">
@@ -78,7 +78,7 @@
 <hr>
 <p><em>Every question begins with the sentence:<br>Using table SASHELP.CLASS write a code that …</em></p>
 <a id="more"></a>
-<h2 id="Data-processing-in-SAS"><a href="#Data-processing-in-SAS" class="headerlink" title="Data processing in SAS:"></a><strong>Data processing in SAS:</strong></h2><ol>
+<h2 id="Data-processing-in-SAS"><a href="#Data-processing-in-SAS" class="headerlink" title="Data processing in SAS:"></a>Data processing in SAS:</h2><ol>
 <li><p>creates a library engine v9 pointing to directory c:\ sas \</p>
 <figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">libname libdata v9 'c:<span class="symbol">\s</span>as<span class="symbol">\'</span>;</div></pre></td></tr></table></figure>
 <p><code>libdata</code> is name of library.</p>
@@ -226,7 +226,7 @@
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc iml<span class="comment">;</span></div><div class="line">    use sashelp.class(obs=<span class="number">2</span>)<span class="comment">;</span></div><div class="line">    read all var &#123;age weight&#125; into A<span class="comment">;</span></div><div class="line">    print A<span class="comment">;</span></div><div class="line">    detA = det(A)<span class="comment">;</span></div><div class="line">    print detA<span class="comment">;</span></div><div class="line">quit<span class="comment">;</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="Reporting-in-SAS"><a href="#Reporting-in-SAS" class="headerlink" title="Reporting in SAS:"></a><strong>Reporting in SAS:</strong></h2><ol>
+<h2 id="Reporting-in-SAS"><a href="#Reporting-in-SAS" class="headerlink" title="Reporting in SAS:"></a>Reporting in SAS:</h2><ol>
 <li><p>creates a format for age group: up to 13 years included and above, using the MEANS procedure determine the number of students and the average values of age</p>
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">data a<span class="comment">;</span></div><div class="line">    set sashelp.class<span class="comment">;</span></div><div class="line">    if age&gt;=<span class="number">13</span> then output<span class="comment">;</span></div><div class="line">run<span class="comment">;</span></div><div class="line">proc means data=a<span class="comment">;</span></div><div class="line">    var age<span class="comment">;</span></div><div class="line">    class age<span class="comment">;</span></div><div class="line">    types () age<span class="comment">;</span></div><div class="line">run<span class="comment">;</span></div></pre></td></tr></table></figure>
 </li>
@@ -319,7 +319,7 @@
 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ods <span class="keyword">trace</span> on / listing;</div><div class="line">ods <span class="keyword">trace</span> off;</div><div class="line">ods listing <span class="keyword">close</span>;</div><div class="line">ods output TestsForNormality=CONVERGENCE;</div><div class="line"><span class="keyword">proc</span><span class="title"> univariate</span> data=sashelp.class<span class="title"> normal;</span></div><div class="line"><span class="title">    var</span> age;<span class="title"></span></div><div class="line">run;</div><div class="line">ods<span class="title"> output</span> close;<span class="title"></span></div><div class="line">ods listing;</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="Statistics-in-SAS"><a href="#Statistics-in-SAS" class="headerlink" title="Statistics in SAS:"></a><strong>Statistics in SAS:</strong></h2><ol>
+<h2 id="Statistics-in-SAS"><a href="#Statistics-in-SAS" class="headerlink" title="Statistics in SAS:"></a>Statistics in SAS:</h2><ol>
 <li><p>creates a histogram of the age variable containing the gaussian curve</p>
 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">proc</span><span class="title"> univatiate</span> data=sashelp.class;<span class="title"></span></div><div class="line">    var age;<span class="title"></span></div><div class="line">    histogram age /<span class="title"> normal;</span></div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
@@ -396,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2016/12/18/Learning-SAS-by-examples/" data-id="cj0tcqyy60007agvgcsbn9g2f" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2016/12/18/Learning-SAS-by-examples/" data-id="cj0te600o0005tkvgwq6w0yti" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/SAS/">SAS</a></li></ul>
