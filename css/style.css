@@ -124,7 +124,8 @@ body,
 }
 body {
   background: #fff;
-  font: 14px "Ubuntu", "Microsoft YaHei", Arial, sans-serif;
+  font: 16px "Ubuntu", "Microsoft YaHei", Arial, sans-serif;
+  font-weight: light;
   -webkit-text-size-adjust: 100%;
 }
 .outer {
@@ -343,9 +344,9 @@ body {
 .nav-icon {
   font-family: FontAwesome;
   text-align: center;
-  font-size: 14px;
-  width: 14px;
-  height: 14px;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
   padding: 20px 15px;
   position: relative;
   cursor: pointer;
@@ -505,12 +506,15 @@ a.article-title:hover {
   padding: 10px 0;
 }
 .article-entry blockquote {
+  margin: 2em 2em;
   overflow: auto;
   font-family: "Ubuntu", "Microsoft YaHei", Arial, sans-serif;
+  font-style: italic;
+  color: #a9a9a9;
   border-collapse: collapse;
-  border-left: solid 5px;
-  background-color: #f8f8f8;
-  border-color: #e0e0e0;
+  border-left: solid 4px;
+  background-color: #fff;
+  border-color: #f3f3f3;
   padding-left: 9px;
   padding-rigth: 9px;
 }
@@ -518,7 +522,7 @@ a.article-title:hover {
   margin: 0;
 }
 .article-entry blockquote footer {
-  font-size: 14px;
+  font-size: 16px;
   margin: 2em 0;
   font-family: "Ubuntu", "Microsoft YaHei", Arial, sans-serif;
 }
@@ -952,11 +956,11 @@ a.article-title:hover {
 .article-entry pre,
 .article-entry .highlight {
   background: #f5f5f5;
-  margin: 0 -10px;
+  margin: 1em 1em;
   padding: 15px 10px;
   overflow: auto;
   color: #4d4d4c;
-  line-height: 22.400000000000002px;
+  line-height: 25.6px;
   border-radius: 5px;
   margin-left: 10px;
   margin-right: 10px;
@@ -1018,7 +1022,7 @@ a.article-title:hover {
   padding-right: 20px;
 }
 .article-entry .highlight .line {
-  height: 19.599999999999998px;
+  height: 22.4px;
 }
 .article-entry .gist {
   margin: 0 -10px;
