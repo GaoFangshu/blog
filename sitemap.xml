@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://gaofangshu.com/blog/tags/index.html</loc>
+    
+    <lastmod>2017-05-05T07:28:41.361Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://gaofangshu.com/blog/blog/2017/05/04/Number-Classification-with-MNIST-Data/</loc>
     
     <lastmod>2017-05-05T07:14:19.221Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>http://gaofangshu.com/blog/blog/2016/10/23/Installing-Scrapy-On-Windows/</loc>
     
     <lastmod>2017-03-28T09:39:11.041Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://gaofangshu.com/blog/tags/index.html</loc>
-    
-    <lastmod>2017-03-28T09:19:44.013Z</lastmod>
     
   </url>
   
