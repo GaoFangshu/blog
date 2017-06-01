@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://gaofangshu.com/blog/about/index.html</loc>
+    
+    <lastmod>2017-06-01T11:36:51.662Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://gaofangshu.com/blog/tags/index.html</loc>
     
     <lastmod>2017-05-05T07:28:41.361Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://gaofangshu.com/blog/blog/2017/05/04/Number-Classification-with-MNIST-Data/</loc>
     
     <lastmod>2017-05-05T07:14:19.221Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://gaofangshu.com/blog/about/index.html</loc>
-    
-    <lastmod>2017-04-13T13:38:35.935Z</lastmod>
     
   </url>
   
