@@ -70,14 +70,24 @@
   <div class="article-inner">
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇来自 DeepMind 的文章将增强学习与神经网络结合，克服了之前机器学习需要提炼关键信息或者提供明确的、有决定性的变量这一缺陷，本文的模型可以直接从高维数据（游戏画面）中提炼关键信息，像人一样与画面交互进行游戏。</p>
-<p>算法以 $1-\epsilon$ 的概率选择学习到的行为，而以 $\epsilon$ 的概率选择一个随机行为来探索游戏，以避免陷入局部解。随着学习的进行， $\epsilon$ 越来越低，但不会为0。</p>
-<p>参考文献：<br><a href="https://courses.cs.ut.ee/MTAT.03.291/2014_spring/uploads/Main/Replicating%20DeepMind.pdf" target="_blank" rel="external">Replicating the Paper “Playing Atari with Deep Reinforcement Learning” (2014)</a></p>
+        <p>这篇来自 DeepMind 的文章将增强学习与神经网络结合，克服了之前增强学习“需要提炼关键信息或者提供明确的、有决定性的变量”这一缺陷，文中的模型可以利用神经网络直接从高维数据（游戏画面）中提炼关键信息，从而避免了 Q-learning 中需要学习记忆的情况太多以至于难以收敛的问题。</p>
+<p>自然地，分析这篇文章的原理可以从两个角度出发，即增强学习（文中采用 Q-learning）和深度学习。</p>
+<h2 id="Q-learning"><a href="#Q-learning" class="headerlink" title="Q-learning"></a>Q-learning</h2><p>下面的公式是认识 Q-learning 的一个切入点：$$<br>\begin{align}<br>Q_{t+1}(s_{t},a_{t}) &amp;= Q_{t}(s_{t},a_{t})+\alpha\cdot(r_{t}+\gamma\cdot\max\limits_{a}Q(s_{t+1},a)-Q_{t}(s_{t},a_{t})) \\<br>&amp;= (1-\alpha)\cdot Q_{t}(s_{t},a_{t})+\alpha\cdot(r_{t}+\gamma\cdot\max\limits_{a}Q(s_{t+1},a))<br>\end{align}$$上式即表示了动作效用函数 $Q$ 的更新方式，由这期行动得到的未来最大回报基于当期回报 $r_{t}$ 和下一期情形下得到的回报 $\max\limits_{a}Q(s_{t+1},a)$。$Q_{t}(s_{t},a_{t})$ 是在情形 $s_{t}$ 下做出行动 $a_{t}$ 所获的预期回报，而 $r_{t}$ 是在情形 $s_{t}$ 下做出行动 $a_{t}$ 所获的实际回报，$\max\limits_{a}Q(s_{t+1},a)$ 是根据之前训练的记忆，在 $s_{t+1}$ 下做出选择所能获得最大回报。$\gamma$ 是未来回报的折现因子（discount factor）。$\alpha$ 是学习速率（learning rate），$\alpha$ 越大，保留之前训练的效果就越少。$r_{t}+\gamma\cdot\max\limits_{a}Q(s_{t+1},a)$ 则是每次被学习到的部分。</p>
+<p>在学习开始前，$Q$ 是一个人为设定的值，每次 agent 选择一个行动并观察到回报，新的情形也就来自于上一个情形以及当下的行动，从而将 $Q$ 更新。<br>用伪代码表示即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">initialize Q    // 随机初始化Q</div><div class="line"><span class="keyword">for</span> episode <span class="keyword">in</span> M:    // 每一局游戏为一个episode</div><div class="line">    initialize S    // S为游戏开始的初始情形</div><div class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> T:    // 直到游戏结束</div><div class="line">        choose action a_t    // 选择一个行动，比如以文中的 ε-greedy 策略，以概率 ε 选择随机行动，概率 <span class="number">1</span>-ε 选择当前状态下效用值最大的行动</div><div class="line">        get r_t, x_t+<span class="number">1</span>, s_t+<span class="number">1</span>    // 执行 a_t 后，得到对应回报 r_t 和新的画面 x_t+<span class="number">1</span>，情形更新为 s_t+<span class="number">1</span></div><div class="line">        Q(s_t,a_t) = Q(s_t,a_t) + α*[r_t + γ*maxQ(S,a) - Q(s_t,a_t)]    // 在maxQ(S,a)中更新S=s_t+<span class="number">1</span>，得到新的Q</div><div class="line">        S = s_t+<span class="number">1</span>    // 情形更新</div></pre></td></tr></table></figure>
+<h2 id="神经网络的引入"><a href="#神经网络的引入" class="headerlink" title="神经网络的引入"></a>神经网络的引入</h2><p>对于本文的任务，单纯使用 Q-learning 增强学习有两个问题：一个是 Q-learning 需要针对不同的游戏各自设定能刻画情形 $s$ 的指标，即无法用同一个 Q-learning 学习不同的游戏；另一个是如果将 84×84×4 的游戏画面直接作为输入，那么 Q-table 中就有太多太多的情形（对于 256 色的屏幕，则有 $256^{84\times84\times4}$ 种）需要列举学习，这在运算上根本不现实。因此，DeepMind 将深度学习引入原来的增强学习模型，来替代“屏幕输入 - $Q$ 输出”这一过程，神经网络架构如下：</p>
+<div align="center"><table width="80%"><tr><th style="text-align:center">Layer</th><th style="text-align:center">Input</th><th style="text-align:center">Filtersize</th><th style="text-align:center">Stride</th><th style="text-align:center">Numfilters</th><th style="text-align:center">Activation</th><th style="text-align:center">Output</th></tr><tr><td style="text-align:center">conv1</td><td style="text-align:center">84×84×4</td><td style="text-align:center">8×8</td><td style="text-align:center">4</td><td style="text-align:center">32</td><td style="text-align:center">ReLU</td><td style="text-align:center">20×20×32</td></tr><tr><td style="text-align:center">conv2</td><td style="text-align:center">20×20×32</td><td style="text-align:center">4×4</td><td style="text-align:center">2</td><td style="text-align:center">64</td><td style="text-align:center">ReLU</td><td style="text-align:center">9×9×64</td></tr><tr><td style="text-align:center">conv3</td><td style="text-align:center">9×9×64</td><td style="text-align:center">3×3</td><td style="text-align:center">1</td><td style="text-align:center">64</td><td style="text-align:center">ReLU</td><td style="text-align:center">7×7×64</td></tr><tr><td style="text-align:center">fc4</td><td style="text-align:center">7×7×64</td><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center">512</td><td style="text-align:center">ReLU</td><td style="text-align:center">512</td></tr><tr><td style="text-align:center">fc5</td><td style="text-align:center">512</td><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center">18</td><td style="text-align:center">Linear</td><td style="text-align:center">18</td></tr></table></div>
+
+<p>网络的输入是 4 幅 84×84 的画面，输出是可能的 18 个行动对应的 $Q$（选择其中最大值对应的行动），其中损失函数为：$$L=[r_{t}+\gamma\cdot\max\limits_{a}Q(s_{t+1},a)-Q_{t}(s_{t},a_{t})]^2$$由于 $Q$ 有可能是任何大小的值，因此上面的损失函数看重的是行动得到的 $r_{t}+\gamma\cdot\max\limits_{a}Q(s_{t+1},a)$ 对原来预测 $Q_{t}(s_{t},a_{t})$ 的偏离情况。</p>
+<p>综上，本文的 deep Q-learning 用伪代码表示即：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">initialize D    // 初始化记忆空间</div><div class="line">initialize Q    // 随机初始化Q</div><div class="line">for episode in M:    // 每一局游戏为一个episode</div><div class="line">    initialize S    // S为游戏开始的初始情形</div><div class="line">    for t in T:    // 直到游戏结束</div><div class="line">	    choose action a_t    // 以 ε-greedy 策略选择一个行动</div><div class="line">            get r_t, x_t+1, s_t+1    // 执行 a_t 后，得到对应回报 r_t 和新的画面 x_t+1，情形更新为 s_t+1</div><div class="line">	    update D    // 更新记忆空间D，添加经验(s_t, a_t, r_t, s_t+1)</div><div class="line">	    sample random (s0, a0, r0, s0') from D   // 从D中随机抽取经验(s0, a0, r0, s0')</div><div class="line">	    if game end at s':</div><div class="line">	        y = r0    // 如果s0'是游戏终止</div><div class="line">	    else:</div><div class="line">                y = r0 + γmaxQ(s0',a)    // 如果s0'不是游戏终止,找到使Q最大的行动a</div><div class="line">	    train the network using L = (y - Q(s0,a0))^2    // 按照损失函数L进行梯度下降</div><div class="line">            S = s_t+1    // 情形更新，论文中为每C步更新一次</div></pre></td></tr></table></figure>
+<h2 id="其他细节"><a href="#其他细节" class="headerlink" title="其他细节"></a>其他细节</h2><h3 id="Experience-replay"><a href="#Experience-replay" class="headerlink" title="Experience replay"></a>Experience replay</h3><p>Experience replay 即从过往保存的记忆数据中随机抽取子样本用于训练，相比直接将上一次行动的经验用于训练，这种方法减少了训练数据的序列相关性，可以避免训练陷入局部最优。</p>
+<h3 id="ε-greedy"><a href="#ε-greedy" class="headerlink" title="ε-greedy"></a>ε-greedy</h3><p>为了解决“探索更优行动”和“直接采用现有经验”之间的矛盾（exploration-exploitation dilemma），本文采用了 ε-greedy 策略，以概率 $\varepsilon$ 选择随机行动（探索），概率 $1-\varepsilon$ 选择当前状态下效用值最大的行动（直接采用经验，即用 $\arg\max\limits_{a}Q(s_{t},a)$）。并且在训练开始时 $\varepsilon=1$，并逐渐随着训练降低至 $\varepsilon=0.1$，在这种策略下，训练开始时可以探索到尽可能多的情形，在后期侧重经验又可以保证游戏表现。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2017/07/04/Human-level-Control-through-Deep-Reinforcement-Learning/" data-id="cj4pnd1ju0005qwvgx9thdhiq" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2017/07/04/Human-level-Control-through-Deep-Reinforcement-Learning/" data-id="cj4sllwb300076wvg01yjmd4l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Read-Papers/">Read Papers</a></li></ul>
@@ -117,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2017/05/04/Number-Classification-with-MNIST-Data/" data-id="cj4pnd1l6000yqwvgv9xojjft" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2017/05/04/Number-Classification-with-MNIST-Data/" data-id="cj4sllwcg000z6wvg6bmm47eb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Machine-Learning/">Machine Learning</a></li></ul>
@@ -164,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2017/04/11/Implementation-of-Hopcroft-Karp-Algorithm/" data-id="cj4pnd1k4000aqwvglzr9bq52" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2017/04/11/Implementation-of-Hopcroft-Karp-Algorithm/" data-id="cj4sllwbb000b6wvgrdqn223i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/R/">R</a></li></ul>
@@ -202,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2017/03/10/Tricks-for-R-List-and-Order/" data-id="cj4pnd1ke000iqwvg03qab234" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2017/03/10/Tricks-for-R-List-and-Order/" data-id="cj4sllwbj000j6wvg9lkwixeg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/R/">R</a></li></ul>
@@ -240,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2017/02/14/Modify-my-Blog-3-Giving-the-Blog-a-Home-Page/" data-id="cj4pnd1k9000eqwvga5q3wjb0" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2017/02/14/Modify-my-Blog-3-Giving-the-Blog-a-Home-Page/" data-id="cj4sllwbf000f6wvg393hpsiv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Blog/">Blog</a></li></ul>
@@ -278,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2017/02/01/IMDb-Searching-Engine/" data-id="cj4pnd1jx0006qwvg1w2hpj5q" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2017/02/01/IMDb-Searching-Engine/" data-id="cj4sllwb100066wvg06ybtcj5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Java/">Java</a></li></ul>
@@ -318,7 +328,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2016/12/18/Learning-SAS-by-examples/" data-id="cj4pnd1k7000bqwvgpqhvlb5v" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2016/12/18/Learning-SAS-by-examples/" data-id="cj4sllwbd000c6wvg0hgo6ojc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/SAS/">SAS</a></li></ul>
@@ -357,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2016/10/31/Modify-my-blog-2-Add-a-tag-page/" data-id="cj4pnd1kg000kqwvgxj64r3oa" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2016/10/31/Modify-my-blog-2-Add-a-tag-page/" data-id="cj4sllwbg000g6wvghe9d7ksi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Blog/">Blog</a></li></ul>
@@ -398,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2016/10/24/Modify-my-blog-1-Code-block-style/" data-id="cj4pnd1ka000fqwvgqnrcm6n3" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2016/10/24/Modify-my-blog-1-Code-block-style/" data-id="cj4sllwbr000o6wvgmq3lfdu3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Blog/">Blog</a></li></ul>
@@ -437,7 +447,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2016/10/23/Installing-Scrapy-On-Windows/" data-id="cj4pnd1jy0007qwvguu1wnowb" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2016/10/23/Installing-Scrapy-On-Windows/" data-id="cj4sllwb700086wvgae7iahbq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Python/">Python</a></li></ul>
