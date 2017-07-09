@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://gaofangshu.com/blog/blog/2017/07/09/Linked-List-and-Chained-Assignment/</loc>
+    
+    <lastmod>2017-07-09T06:10:47.767Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://gaofangshu.com/blog/blog/2017/07/04/Human-level-Control-through-Deep-Reinforcement-Learning/</loc>
     
-    <lastmod>2017-07-06T15:34:55.030Z</lastmod>
+    <lastmod>2017-07-09T06:10:35.573Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gaofangshu.com/blog/tags/index.html</loc>
+    
+    <lastmod>2017-07-09T06:08:42.629Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gaofangshu.com/blog/blog/2017/05/04/Number-Classification-with-MNIST-Data/</loc>
+    
+    <lastmod>2017-07-09T06:07:01.461Z</lastmod>
     
   </url>
   
@@ -12,20 +33,6 @@
     <loc>http://gaofangshu.com/blog/about/index.html</loc>
     
     <lastmod>2017-07-04T13:36:07.327Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://gaofangshu.com/blog/tags/index.html</loc>
-    
-    <lastmod>2017-05-05T07:28:41.361Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://gaofangshu.com/blog/blog/2017/05/04/Number-Classification-with-MNIST-Data/</loc>
-    
-    <lastmod>2017-05-05T07:14:19.221Z</lastmod>
     
   </url>
   

@@ -4,14 +4,16 @@
 
     
   <url>
-    <loc>http://gaofangshu.com/blog/blog/2017/07/04/Human-level-Control-through-Deep-Reinforcement-Learning/</loc>
-    <lastmod>2017-07-06T15:34:55.030Z</lastmod>
+    <loc>http://gaofangshu.com/blog/blog/2017/07/09/Linked-List-and-Chained-Assignment/</loc>
+    <lastmod>2017-07-09T06:10:47.767Z</lastmod>
     <data>
         <display>
-        <title>Human-level Control through Deep Reinforcement Learning</title>
-        <pubTime>2017-07-04T13:33:51.000Z</pubTime>
+        <title>Linked List and Chained Assignment</title>
+        <pubTime>2017-07-09T06:01:15.000Z</pubTime>
         
-        <tag>Read Papers</tag>
+        <tag>Python</tag>
+         
+        <tag>LeetCode</tag>
          
          
            
@@ -20,16 +22,16 @@
     </url>
 
     
-    
-    
   <url>
-    <loc>http://gaofangshu.com/blog/blog/2017/05/04/Number-Classification-with-MNIST-Data/</loc>
-    <lastmod>2017-05-05T07:14:19.221Z</lastmod>
+    <loc>http://gaofangshu.com/blog/blog/2017/07/04/Human-level-Control-through-Deep-Reinforcement-Learning/</loc>
+    <lastmod>2017-07-09T06:10:35.573Z</lastmod>
     <data>
         <display>
-        <title>Number Classification with MNIST Data</title>
-        <pubTime>2017-05-04T10:42:18.000Z</pubTime>
+        <title>Human-level Control through Deep Reinforcement Learning</title>
+        <pubTime>2017-07-04T13:33:51.000Z</pubTime>
         
+        <tag>Read Papers</tag>
+         
         <tag>Machine Learning</tag>
          
          
@@ -38,6 +40,27 @@
     </data>
     </url>
 
+    
+    
+  <url>
+    <loc>http://gaofangshu.com/blog/blog/2017/05/04/Number-Classification-with-MNIST-Data/</loc>
+    <lastmod>2017-07-09T06:07:01.461Z</lastmod>
+    <data>
+        <display>
+        <title>Number Classification with MNIST Data</title>
+        <pubTime>2017-05-04T10:42:18.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://gaofangshu.com/blog/blog/2017/04/11/Implementation-of-Hopcroft-Karp-Algorithm/</loc>

@@ -5,22 +5,16 @@
   
   <title>Human-level Control through Deep Reinforcement Learning | Gao Fangshu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这篇来自 DeepMind 的文章将增强学习与神经网络结合，克服了之前增强学习“需要提炼关键信息或者提供明确的、有决定性的变量”这一缺陷，文中的模型可以利用神经网络直接从高维数据（游戏画面）中提炼关键信息，从而避免了 Q-learning 中需要学习记忆的情况太多以至于难以收敛的问题。
-自然地，分析这篇文章的原理可以从两个角度出发，即增强学习（文中采用 Q-learning）和深度学习。
-Q-le">
+  <meta name="description" content="这篇来自 DeepMind 的文章将增强学习与神经网络结合，克服了之前增强学习“需要提炼关键信息或者提供明确的、有决定性的变量”这一缺陷，文中的模型可以利用神经网络直接从高维数据（游戏画面）中提炼关键信息，从而避免了 Q-learning 中需要学习记忆的情况太多以至于难以收敛的问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Human-level Control through Deep Reinforcement Learning">
 <meta property="og:url" content="http://gaofangshu.com/blog/2017/07/04/Human-level-Control-through-Deep-Reinforcement-Learning/index.html">
 <meta property="og:site_name" content="Gao Fangshu">
-<meta property="og:description" content="这篇来自 DeepMind 的文章将增强学习与神经网络结合，克服了之前增强学习“需要提炼关键信息或者提供明确的、有决定性的变量”这一缺陷，文中的模型可以利用神经网络直接从高维数据（游戏画面）中提炼关键信息，从而避免了 Q-learning 中需要学习记忆的情况太多以至于难以收敛的问题。
-自然地，分析这篇文章的原理可以从两个角度出发，即增强学习（文中采用 Q-learning）和深度学习。
-Q-le">
-<meta property="og:updated_time" content="2017-07-06T15:34:55.030Z">
+<meta property="og:description" content="这篇来自 DeepMind 的文章将增强学习与神经网络结合，克服了之前增强学习“需要提炼关键信息或者提供明确的、有决定性的变量”这一缺陷，文中的模型可以利用神经网络直接从高维数据（游戏画面）中提炼关键信息，从而避免了 Q-learning 中需要学习记忆的情况太多以至于难以收敛的问题。">
+<meta property="og:updated_time" content="2017-07-09T06:10:35.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Human-level Control through Deep Reinforcement Learning">
-<meta name="twitter:description" content="这篇来自 DeepMind 的文章将增强学习与神经网络结合，克服了之前增强学习“需要提炼关键信息或者提供明确的、有决定性的变量”这一缺陷，文中的模型可以利用神经网络直接从高维数据（游戏画面）中提炼关键信息，从而避免了 Q-learning 中需要学习记忆的情况太多以至于难以收敛的问题。
-自然地，分析这篇文章的原理可以从两个角度出发，即增强学习（文中采用 Q-learning）和深度学习。
-Q-le">
+<meta name="twitter:description" content="这篇来自 DeepMind 的文章将增强学习与神经网络结合，克服了之前增强学习“需要提炼关键信息或者提供明确的、有决定性的变量”这一缺陷，文中的模型可以利用神经网络直接从高维数据（游戏画面）中提炼关键信息，从而避免了 Q-learning 中需要学习记忆的情况太多以至于难以收敛的问题。">
   
   
     <link rel="icon" href="favicon.ico">
@@ -80,7 +74,7 @@ Q-le">
   <div class="article-inner">
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇来自 DeepMind 的文章将增强学习与神经网络结合，克服了之前增强学习“需要提炼关键信息或者提供明确的、有决定性的变量”这一缺陷，文中的模型可以利用神经网络直接从高维数据（游戏画面）中提炼关键信息，从而避免了 Q-learning 中需要学习记忆的情况太多以至于难以收敛的问题。</p>
+        <p>这篇来自 DeepMind 的文章将增强学习与神经网络结合，克服了之前增强学习“需要提炼关键信息或者提供明确的、有决定性的变量”这一缺陷，文中的模型可以利用神经网络直接从高维数据（游戏画面）中提炼关键信息，从而避免了 Q-learning 中需要学习记忆的情况太多以至于难以收敛的问题。<br><a id="more"></a></p>
 <p>自然地，分析这篇文章的原理可以从两个角度出发，即增强学习（文中采用 Q-learning）和深度学习。</p>
 <h2 id="Q-learning"><a href="#Q-learning" class="headerlink" title="Q-learning"></a>Q-learning</h2><p>下面的公式是认识 Q-learning 的一个切入点：$$<br>\begin{align}<br>Q_{t+1}(s_{t},a_{t}) &amp;= Q_{t}(s_{t},a_{t})+\alpha\cdot(r_{t}+\gamma\cdot\max\limits_{a}Q(s_{t+1},a)-Q_{t}(s_{t},a_{t})) \\<br>&amp;= (1-\alpha)\cdot Q_{t}(s_{t},a_{t})+\alpha\cdot(r_{t}+\gamma\cdot\max\limits_{a}Q(s_{t+1},a))<br>\end{align}$$上式即表示了动作效用函数 $Q$ 的更新方式，由这期行动得到的未来最大回报基于当期回报 $r_{t}$ 和下一期情形下得到的回报 $\max\limits_{a}Q(s_{t+1},a)$。$Q_{t}(s_{t},a_{t})$ 是在情形 $s_{t}$ 下做出行动 $a_{t}$ 所获的预期回报，而 $r_{t}$ 是在情形 $s_{t}$ 下做出行动 $a_{t}$ 所获的实际回报，$\max\limits_{a}Q(s_{t+1},a)$ 是根据之前训练的记忆，在 $s_{t+1}$ 下做出选择所能获得最大回报。$\gamma$ 是未来回报的折现因子（discount factor）。$\alpha$ 是学习速率（learning rate），$\alpha$ 越大，保留之前训练的效果就越少。$r_{t}+\gamma\cdot\max\limits_{a}Q(s_{t+1},a)$ 则是每次被学习到的部分。</p>
 <p>在学习开始前，$Q$ 是一个人为设定的值，每次 agent 选择一个行动并观察到回报，新的情形也就来自于上一个情形以及当下的行动，从而将 $Q$ 更新。<br>用伪代码表示即：</p>
@@ -97,16 +91,25 @@ Q-le">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofangshu.com/blog/blog/2017/07/04/Human-level-Control-through-Deep-Reinforcement-Learning/" data-id="cj4sllwb300076wvg01yjmd4l" class="article-share-link">Share</a>
+      <a data-url="http://gaofangshu.com/blog/blog/2017/07/04/Human-level-Control-through-Deep-Reinforcement-Learning/" data-id="cj4wbm86o0006ogvgm2utq90q" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Read-Papers/">Read Papers</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Read-Papers/">Read Papers</a></li></ul>
 
     </footer>
   </div>
   
     
 <nav id="article-nav">
+  
+    <a href="/blog/2017/07/09/Linked-List-and-Chained-Assignment/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linked List and Chained Assignment
+        
+      </div>
+    </a>
   
   
     <a href="/blog/2017/05/04/Number-Classification-with-MNIST-Data/" id="article-nav-older" class="article-nav-link-wrap">
